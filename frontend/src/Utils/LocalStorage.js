@@ -11,7 +11,7 @@ function loadData(key) {
         return data;
     }
     catch (err) {
-        return undefined;
+        return false;
     }
 }
 

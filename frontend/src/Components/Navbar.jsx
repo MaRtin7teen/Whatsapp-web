@@ -107,18 +107,19 @@ const NavbarCont = styled.div`
         font-size: 4vw;
     }
 
-    @media (max-width: 650px), (max-height: 580px) {
+    /* @media (max-width: 650px), (max-height: 580px) {
 
         & > .menu {
             & > .menuItems {
                 top: 30px;
             }
         }
-    }
+    } */
 `;
 
 const Navbar = () => {
 
+    // Variable menuState initialised to value false
     const [menuState, setMenuState] = React.useState(false);
 
     // Function to change the value of menuState (true -> false or false -> true)

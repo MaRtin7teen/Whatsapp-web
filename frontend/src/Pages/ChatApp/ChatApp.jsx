@@ -8,15 +8,30 @@ const AppContainer = styled.div`
 
     & > .gridContainer {
         display: grid;
-        grid-template-columns: 20% 80%;
+        grid-template-columns: 250px auto;
 
         @media (max-width: 650px) {
-            display: none;
+            grid-template-columns: 100%;
         }
     }
 `;
 
 const ChatApp = () => {
+
+    const [screen, setScreen] = React.useState("contacts");
+
+    const [width, setWidth] = React.useState(window.innerWidth);
+
+    const changeScreen = (value) => {
+        setScreen(value);
+    }
+
+    const checkWidth = () => {
+        setWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", checkWidth);
+
     return (
         <AppContainer>
 
@@ -26,10 +41,10 @@ const ChatApp = () => {
             <div className="gridContainer">
 
                 {/* Contacts list */}
-                <Contacts />
+                <Contacts width={width} screen={screen} changeScreen={changeScreen} />
 
                 {/* Chats or Messages */}
-                <Messages />
+                <Messages width={width} screen={screen} changeScreen={changeScreen} />
             </div>
 
         </AppContainer>
