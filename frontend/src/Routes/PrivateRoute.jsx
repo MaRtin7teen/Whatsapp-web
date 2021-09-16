@@ -8,7 +8,7 @@ const PrivateRoute = ({path,children}) => {
     const auth = loadData("auth") || false;
     // console.log(auth);
 
-    const chats = loadData("chats") || false;
+    const messages = loadData("messages") || false;
 
     return auth ? (
 
@@ -17,9 +17,9 @@ const PrivateRoute = ({path,children}) => {
             {children}
         </Route>
     ) :
-    chats ? 
+    messages ? 
 
-    // If chats is true then it redirects the user to the login page
+    // If messages is true then it redirects the user to the login page
     <Redirect to="/login" /> :
 
     // If Auth status & chats is false then it redirects the user to the signup page

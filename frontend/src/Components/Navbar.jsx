@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { AiOutlineWhatsApp } from 'react-icons/ai';
 import { HiOutlineMenu } from "react-icons/hi";
-// import { saveData } from '../Utils/LocalStorage';
+import { loadData, saveData } from '../Utils/LocalStorage';
 
 const NavbarCont = styled.div`
     background-color: #00BFA5;
@@ -120,6 +120,9 @@ const NavbarCont = styled.div`
 
 const Navbar = () => {
 
+    // Gets Auth state from localStorage
+    const auth = loadData("auth");
+
     // Variable menuState initialised to value false
     const [menuState, setMenuState] = React.useState(false);
 
@@ -132,7 +135,8 @@ const Navbar = () => {
     const handleLogout = () => {
 
         // Sets value of key "auth" to false in localStorage
-        // saveData("auth", false);
+        saveData("auth", false);
+        saveData("messages", []);
 
         // Reloads the page
         window.location.reload();
@@ -152,20 +156,25 @@ const Navbar = () => {
 
             </div>
 
-            {/* Menu (right side) */}
-            <div className="menu">
+            {
+                auth ?
+                <>
+                    {/* Menu (right side) */}
+                    <div className="menu">
 
-                {/* Menu Icon with an onlick function to change value of menuState */}
-                <HiOutlineMenu onClick={handleMenuState} className="menuIcon" />
+                        {/* Menu Icon with an onlick function to change value of menuState */}
+                        <HiOutlineMenu onClick={handleMenuState} className="menuIcon" />
 
-                {/* Is displayed only when menuStatus is true */}
-                <div className={menuState ? "menuItems" : "hidden"}>
+                        {/* Is displayed only when menuStatus is true */}
+                        <div className={menuState ? "menuItems" : "hidden"}>
 
-                    {/* Logout button */}
-                    <div className="logout" onClick={handleLogout}>Logout</div>
+                            {/* Logout button */}
+                            <div className="logout" onClick={handleLogout}>Logout</div>
 
-                </div>
-            </div>
+                        </div>
+                    </div>
+                </> : false
+            }
 
         </NavbarCont>
     )
