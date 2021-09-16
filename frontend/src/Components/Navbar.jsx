@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { AiOutlineWhatsApp } from 'react-icons/ai';
 import { HiOutlineMenu } from "react-icons/hi";
-import { saveData } from '../Utils/LocalStorage';
+// import { saveData } from '../Utils/LocalStorage';
 
 const NavbarCont = styled.div`
     background-color: #00BFA5;
@@ -46,7 +46,7 @@ const NavbarCont = styled.div`
             }
         }
 
-        & > .disabled {
+        & > .hidden {
             display: none;
         }
 
@@ -104,7 +104,8 @@ const NavbarCont = styled.div`
     }
 
     @media (max-width: 350px) {
-        font-size: 4vw;
+        font-size: 13px;
+        grid-template-columns: auto 30px;
     }
 
     /* @media (max-width: 650px), (max-height: 580px) {
@@ -131,7 +132,7 @@ const Navbar = () => {
     const handleLogout = () => {
 
         // Sets value of key "auth" to false in localStorage
-        saveData("auth", false);
+        // saveData("auth", false);
 
         // Reloads the page
         window.location.reload();
@@ -158,7 +159,7 @@ const Navbar = () => {
                 <HiOutlineMenu onClick={handleMenuState} className="menuIcon" />
 
                 {/* Is displayed only when menuStatus is true */}
-                <div className={menuState ? "disabled" : "menuItems"}>
+                <div className={menuState ? "menuItems" : "hidden"}>
 
                     {/* Logout button */}
                     <div className="logout" onClick={handleLogout}>Logout</div>

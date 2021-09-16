@@ -8,6 +8,9 @@ import ChatApp from '../Pages/ChatApp/ChatApp';
 // Private Route
 import PrivateRoute from './PrivateRoute';
 
+// Public Route
+import PublicRoute from './PublicRoute';
+
 const Routes = () => {
     return (
         <Switch>
@@ -18,14 +21,14 @@ const Routes = () => {
             </PrivateRoute>
 
             {/* Signup Page */}
-            <Route path="/signup">
+            <PublicRoute path="/signup">
                 <Signup />
-            </Route>
+            </PublicRoute>
 
             {/* Login Page */}
-            <Route path="/login">
+            <PublicRoute path="/login">
                 <Login />
-            </Route>
+            </PublicRoute>
 
             {/* Any other route */}
             <Route>

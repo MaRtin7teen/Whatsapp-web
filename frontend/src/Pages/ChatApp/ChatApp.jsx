@@ -20,7 +20,16 @@ const ChatApp = () => {
 
     const [screen, setScreen] = React.useState("contacts");
 
+    const [selected, setSelected] = React.useState("");
+
+    const [messages, setMessages] = React.useState([]);
+
     const [width, setWidth] = React.useState(window.innerWidth);
+
+    const changeSelected = (value) => {
+        setSelected(value);
+        // setMessages({});
+    }
 
     const changeScreen = (value) => {
         setScreen(value);
@@ -29,6 +38,8 @@ const ChatApp = () => {
     const checkWidth = () => {
         setWidth(window.innerWidth);
     }
+
+    console.log(screen, width);
 
     window.addEventListener("resize", checkWidth);
 
@@ -40,11 +51,22 @@ const ChatApp = () => {
 
             <div className="gridContainer">
 
-                {/* Contacts list */}
-                <Contacts width={width} screen={screen} changeScreen={changeScreen} />
+                {/* If width is greater than 650px (large screens) */}
+                {
+                    width > 650 ?
+                    <>
+                        {/* Contacts list */}
+                        <Contacts changeScreen={changeScreen} selected={selected} changeSelected={changeSelected} />
 
-                {/* Chats or Messages */}
-                <Messages width={width} screen={screen} changeScreen={changeScreen} />
+                        {/* Chats or Messages */}
+                        <Messages changeScreen={changeScreen} screen={screen} selected={selected} messages={messages} changeSelected={changeSelected} />
+                    </> :
+
+                    // If width is below  650px (small screens)
+                    screen === "contacts" ?
+                    <Contacts changeScreen={changeScreen} changeSelected={changeSelected} /> :
+                    <Messages changeScreen={changeScreen} screen={screen} selected={selected} messages={messages} changeSelected={changeSelected} />
+                }
             </div>
 
         </AppContainer>
