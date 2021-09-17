@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { firebase } from '../../Auth/Firebase';
 import Navbar from '../../Components/Navbar';
 
@@ -58,6 +58,20 @@ const SignupCont = styled.div`
 
         & > .errorMessage {
             color: red;
+        }
+
+        & > .switchToLogin {
+            font-weight: 600;
+            color: gray;
+
+            & > .loginLink {
+                color: #0084ff;
+                text-decoration: none;
+
+                :hover {
+                    text-decoration: underline;
+                }
+            }
         }
     }
 
@@ -131,6 +145,11 @@ const Signup = () => {
 
                 {/* Signup Button */}
                 <button className="signupBtn" onClick={handleSignup}>SIGNUP</button>
+                <br />
+
+                <div className="switchToLogin">
+                    Already a user, <Link to="/login" className="loginLink">Login</Link> here
+                </div>
 
                 {/* Error Message */}
                 {
